@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 let mode = 'development'
 let target = 'web'
+
 const plugins = [
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({
@@ -25,8 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.SERVE) {
   plugins.push(new ReactRefreshWebpackPlugin())
 } // ! when make common webpack, move this into webpack.dev.js
-
-// TODO scss not live for dev when use "hot"
 
 module.exports = {
   mode: mode,
@@ -51,7 +50,8 @@ module.exports = {
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'postcss-loader', // ? use for browserslist, add property for old versions browsers
           'sass-loader',
@@ -80,3 +80,6 @@ module.exports = {
 
   plugins: plugins,
 }
+
+// "start": "SERVE=true webpack serve",
+// "build": "NODE_ENV=production webpack",
