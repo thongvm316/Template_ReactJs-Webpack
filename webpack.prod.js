@@ -5,6 +5,7 @@ const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -44,6 +45,7 @@ module.exports = merge(common, {
 
   plugins: [
     new CleanWebpackPlugin(),
+    new LodashModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'style.[contenthash].css',
     }),
