@@ -10,7 +10,6 @@ const plugins = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
     template: './src/index.html',
-    inject: 'body',
   }),
 ]
 

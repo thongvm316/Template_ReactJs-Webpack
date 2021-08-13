@@ -51,7 +51,6 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body',
     }),
   ],
 })
