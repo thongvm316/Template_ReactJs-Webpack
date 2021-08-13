@@ -5,9 +5,11 @@ const { merge } = require('webpack-merge')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const plugins = [
   new CleanWebpackPlugin(),
+  new LodashModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     template: './src/index.html',
   }),
@@ -25,6 +27,18 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     assetModuleFilename: 'images/[hash][ext][query]',
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
   },
 
   module: {
