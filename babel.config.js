@@ -1,4 +1,4 @@
-const plugins = ['lodash']
+const plugins = ['@babel/plugin-syntax-dynamic-import', 'lodash']
 
 // Cannot load "react-refresh/babel" in production
 if (process.env.NODE_ENV !== 'production') {
